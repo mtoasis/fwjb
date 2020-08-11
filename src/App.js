@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import SearchBar from './component/search-bar/search-bar.component'
+import { AppContainer } from './App.styles'
+import ShowResult from './component/show-result/show-result.component'
+import { sample } from './sample-json/sample'
 
-function App() {
+const App = () => {
+
+  useEffect(()=>
+    setResult(sample), []
+  )
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const [result, setResult] = useState([]);
+
+  const handleChange = event => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setResult(sample.filter(element =>
+      element.skills.toLowerCase() === searchTerm.toLowerCase()));
+
+      //this part will be replaced with redux in the later update -Julian- 
+
+    setSearchTerm("");
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer className="App">
+      <SearchBar
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        searchTerm={searchTerm}
+      />
+      <ShowResult result={result} />
+    </AppContainer>
   );
 }
 

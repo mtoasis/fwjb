@@ -1,0 +1,26 @@
+import UserActionTypes from './user.types'
+
+const INITIAL_STATE = {
+    userList: [],
+    error: null
+};
+
+const userReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case UserActionTypes.IMPORT_USERLIST_SUCCESS:
+            return{
+                ...state,
+                userList: action.payload,
+                error:null
+            };
+        case UserActionTypes.IMPORT_USERLIST_FAILURE:
+            return{
+                ...state,
+                error:action.payload
+            };
+        default:
+            return state;
+    };
+}
+
+export default userReducer

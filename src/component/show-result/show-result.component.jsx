@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect } from 'react'
 import ResultItem from '../result-item/result-item.component'
 import { createStructuredSelector } from 'reselect'
@@ -6,7 +8,7 @@ import { selectUserList } from '../../redux/user/user.selectors'
 import { importUserlistStart } from '../../redux/user/user.action'
 
 
-const ShowResult = ({ userList, importUserlistStart, history }) => {
+const ShowResult = ({ userList, importUserlistStart }) => {
 
     useEffect(() =>
         initialLoading(), []

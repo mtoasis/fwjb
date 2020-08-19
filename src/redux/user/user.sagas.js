@@ -11,9 +11,7 @@ export function* importUserlist({payload}){
             result = sample
         }else{
             result = sample.filter(element=>
-                element.skills.toLowerCase().includes(payload.toLowerCase()));
-        
-                
+                element.skills.toLowerCase().includes(payload.toLowerCase()));                
         }
         yield put(importUserlistSuccess(result));
     }

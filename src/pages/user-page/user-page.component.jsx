@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { selectUserId, selectUserList } from '../../redux/user/user.selectors'

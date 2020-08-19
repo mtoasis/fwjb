@@ -3,7 +3,7 @@ import { ResultItemContainer, ResultItemText } from './result-item.styles'
 import { withRouter } from 'react-router-dom'
 
 
-const ResultItem = ({ info: { id, userName, skills, interests }, history, match }) => {
+const ResultItem = ({ info: { id, userName, skills, interests }, history }) => {
 
     return (
         <ResultItemContainer

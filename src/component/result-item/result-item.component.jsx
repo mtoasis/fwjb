@@ -1,23 +1,27 @@
 import React from 'react'
 import { ResultItemContainer, ResultItemText } from './result-item.styles'
+import { withRouter } from 'react-router-dom'
 
-const ResultItem = ({ info: { userName, skills, interests} }) => {
+
+const ResultItem = ({ info: { id, userName, skills, interests }, history, match }) => {
 
     return (
-        <ResultItemContainer>
+        <ResultItemContainer
+            onClick={() => history.push(`/user/${id}`)}
+        >
             <ResultItemText>Name: {userName}</ResultItemText>
 
             <ResultItemText>Skills: {skills}</ResultItemText>
 
-            <ResultItemText>Interests:  
+            <ResultItemText>Interests:
                 {
-            
-            interests.map((element,i) => i === interests.length-1? 
-            <span key={i}>{element}</span> :
-            <span key={i}> {element}, </span> 
-            )
-            
-            }
+
+                    interests.map((element, i) => i === interests.length - 1 ?
+                        <span key={i}>{element}</span> :
+                        <span key={i}> {element}, </span>
+                    )
+
+                }
             </ResultItemText>
 
 
@@ -26,4 +30,4 @@ const ResultItem = ({ info: { userName, skills, interests} }) => {
 
 }
 
-export default ResultItem
+export default withRouter(ResultItem) 

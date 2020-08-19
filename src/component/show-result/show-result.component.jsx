@@ -6,7 +6,7 @@ import { selectUserList } from '../../redux/user/user.selectors'
 import { importUserlistStart } from '../../redux/user/user.action'
 
 
-const ShowResult = ({ userList, importUserlistStart }) => {
+const ShowResult = ({ userList, importUserlistStart, history }) => {
 
     useEffect(() =>
         initialLoading(), []

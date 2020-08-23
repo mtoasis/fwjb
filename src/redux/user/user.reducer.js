@@ -18,6 +18,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 error:action.payload
             };
+        case UserActionTypes.CHANGE_USEREINFO_SUCCESS:
+            return{
+                ...state,
+                userList: action.payload
+            };
+        case UserActionTypes.CHANGE_USERINFO_FAILURE:
+            return{
+                ...state,
+                error:action.payload
+            };
         default:
             return state;
     };

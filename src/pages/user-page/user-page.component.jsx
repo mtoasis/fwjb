@@ -1,20 +1,41 @@
 /* eslint-disable */
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { selectUserId, selectUserList } from '../../redux/user/user.selectors'
-import { importUserlistStart } from '../../redux/user/user.action'
+import { importUserlistStart, changeUserinfoStart } from '../../redux/user/user.action'
 
-const UserPage = ({ userList, importUserlistStart, userInfo }) => {
+const UserPage = ({ userList, importUserlistStart, userInfo, changeUserinfoStart }) => {
 
     useEffect(() =>
         initialLoading(), []
     )
 
+    const [fieldStatus, setFieldStatus] = useState(false);
+    const [newUserName, setNewUserName] = useState(userInfo.userName)
+
     const initialLoading = () => {
         if (!userList.length) {
-            importUserlistStart("")
+           importUserlistStart("")
         }
+        
+    }
+
+    const handleField = ()=>{
+        setFieldStatus(!fieldStatus);
+    }
+
+    const handleChange =()=>{
+        let newUserInfo = userInfo;
+        newUserInfo.userName = newUserName
+        
+        changeUserinfoStart(newUserInfo, userList)
+        setFieldStatus(!fieldStatus)
+    }
+
+    const handleUpdateUserInfo = (event) =>{
+        const {value} = event.target;
+        setNewUserName(value)
     }
 
 
@@ -27,8 +48,19 @@ const UserPage = ({ userList, importUserlistStart, userInfo }) => {
 
         return (
 
-            <div>               
-                <h1>{`Name: ${userName}`}</h1>
+            <div>
+                {/* {console.log(userInfoState)} */}
+                {fieldStatus? 
+                <div>
+                    <input 
+                    placeholder={userName}
+                    value={newUserName}
+                    onChange={handleUpdateUserInfo}/>
+                    <button onClick={()=>handleChange()}>Save</button>
+                </div>
+                :
+                <h1 onDoubleClick={()=>handleField()}>{`Name: ${userName}`}</h1>}    
+                
                 <h3>{`Skills: ${skills}`}</h3>
                 <h3>{`Interests: `}</h3>
 
@@ -46,7 +78,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    importUserlistStart: (searchTerm) => dispatch(importUserlistStart(searchTerm))
+    importUserlistStart: (searchTerm) => dispatch(importUserlistStart(searchTerm)),
+    changeUserinfoStart: (userInfo, userList) => dispatch(changeUserinfoStart(userInfo, userList))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

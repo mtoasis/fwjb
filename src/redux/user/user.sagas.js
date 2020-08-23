@@ -1,6 +1,12 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects'
 import UserActionTypes from './user.types'
-import { importUserlistSuccess, importUserlistFailure } from './user.action'
+import { 
+    importUserlistSuccess, 
+    importUserlistFailure,
+    changeUserinfoSuccess,
+    changeUserinfoFailure
+
+} from './user.action'
 
 import { sample } from '../../sample-json/sample'
 
@@ -20,12 +26,29 @@ export function* importUserlist({payload}){
     };
 };
 
+export function* changeUserinfo({payload: {userInfo, userList}}){
+    try{
+        let result = [];
+        result = userList.filter(element => element.id !== userInfo.id)
+        result.push(userInfo)
+        yield put(changeUserinfoSuccess(result));
+    }
+    catch(error){
+        yield put(changeUserinfoFailure(error));
+    }
+}
+
 export function* onImportUserlist(){
     yield takeLatest(UserActionTypes.IMPORT_USERLIST_START, importUserlist);
 };
 
+export function* onChangeUserinfo(){
+    yield takeLatest(UserActionTypes.CHANGE_USERINFO_START, changeUserinfo);
+}
+
 export function* userSagas(){
     yield all([
-        call(onImportUserlist)
+        call(onImportUserlist),
+        call(onChangeUserinfo)
     ]);
 };

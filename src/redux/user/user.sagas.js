@@ -11,7 +11,7 @@ import {
 import { sample } from '../../sample-json/sample'
 
 export function* importUserlist({payload}){
-    try{
+    try{        
         let result = [];
         if(!payload.length){
             result = sample
@@ -29,8 +29,7 @@ export function* importUserlist({payload}){
 export function* changeUserinfo({payload: {userInfo, userList}}){
     try{
         let result = [];
-        result = userList.filter(element => element.id !== userInfo.id)
-        result.push(userInfo)
+        result = userList.map(element=>element.id === userInfo.id? Object.assign(element, userInfo):element)
         yield put(changeUserinfoSuccess(result));
     }
     catch(error){

@@ -8,17 +8,30 @@ import {
 
 } from './user.action'
 
-import { sample } from '../../sample-json/sample'
-
 export function* importUserlist({payload}){
     try{        
-        let result = [];
-        if(!payload.length){
-            result = sample
-        }else{
-            result = sample.filter(element=>
-                element.skills.toLowerCase().includes(payload.toLowerCase()));                
+        const data = yield fetch('http://localhost:8080/api/users')
+        let result = yield data.json();
+
+        if(payload.length){
+            //need to work on this later.
+    
+            // const newRes = result.filter(({skills})=>{
+
+            //     skills.filter(element=>
+            //         {
+            //             element.toLowerCase().includes(payload.toLowerCase())
+            //             console.log(element)
+                    
+            //         })
+                // console.log(skills)
+                // skills.includes(payload.toLowerCase())                        
+
+            // }) 
+            // console.log(newRes)
+            // result = newRes               
         }
+
         yield put(importUserlistSuccess(result));
     }
     catch(error){

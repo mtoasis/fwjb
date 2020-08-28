@@ -6,8 +6,10 @@ const ResultItem = ({ info: { id, userName, skills, interests }, history }) => {
   return (
     <ResultItemContainer onClick={() => history.push(`/user/${id}`)}>
       <ResultItemText>Name: {userName}</ResultItemText>
+      <ResultItemText>Skills: {skills}</ResultItemText>
 
-      <ResultItemText>
+
+      {/* <ResultItemText>
         Skills:
         {skills.map((element, i) =>
           i === skills.length - 1 ? (
@@ -16,7 +18,7 @@ const ResultItem = ({ info: { id, userName, skills, interests }, history }) => {
             <span key={i}> {element}, </span>
           )
         )}
-      </ResultItemText>
+      </ResultItemText> */}
 
       <ResultItemText>
         Interests:

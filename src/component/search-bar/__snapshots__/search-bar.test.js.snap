@@ -1,3 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search-bar component should render Search-bar component 1`] = `undefined`;
+exports[`Search-bar component should render Search-bar component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(SearchBar)>
+    <SearchBar
+      importUserlistStart={[Function]}
+    >
+      <SearchBarContainer>
+        <div
+          className="sc-AxhCb XVIGq"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <FormInput
+              label="Search skills"
+              onChange={[Function]}
+              type="text"
+              value=""
+            >
+              <styled.div>
+                <div
+                  className="sc-AxjAm cZLelL"
+                >
+                  <FormInputContainer
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  >
+                    <input
+                      className="sc-AxirZ fYlda-d"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    />
+                  </FormInputContainer>
+                  <FormInputLabelContainer
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  >
+                    <label
+                      className="sc-AxiKw etWACp"
+                      onChange={[Function]}
+                      type="text"
+                      value=""
+                    >
+                      Search skills
+                    </label>
+                  </FormInputLabelContainer>
+                </div>
+              </styled.div>
+            </FormInput>
+          </form>
+        </div>
+      </SearchBarContainer>
+    </SearchBar>
+  </Connect(SearchBar)>
+</Provider>
+`;

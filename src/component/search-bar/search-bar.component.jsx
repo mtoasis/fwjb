@@ -16,7 +16,6 @@ const SearchBar = ({ importUserlistStart }) => {
     const handleSubmit = event => {
         event.preventDefault();
         importUserlistStart(searchTerm);
-
     }
 
     return (

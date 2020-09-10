@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { selectUserId, selectUserList } from '../../redux/user/user.selectors'
+import { selectUserlistById, selectUserList } from '../../redux/user/user.selectors'
 import { importUserlistStart, changeUserinfoStart } from '../../redux/user/user.action'
 import UserPageItem from '../../component/user-page-item/user-page-item.component'
 
@@ -99,7 +99,7 @@ const UserPage = ({ userList, importUserlistStart, userInfo, changeUserinfoStart
 
 const mapStateToProps = (state, ownProps) => ({
     userList: selectUserList(state),
-    userInfo: selectUserId(ownProps.match.params.userId)(state)[0]
+    userInfo: selectUserlistById(ownProps.match.params.userId)(state)[0]
 })
 
 const mapDispatchToProps = dispatch => ({

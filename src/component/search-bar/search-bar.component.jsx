@@ -24,7 +24,7 @@ const SearchBar = ({ importUserlistStart }) => {
                 <FormInput
                     type="text"
                     value={searchTerm}
-                    onChange={handleChange}
+                    onChange={(event)=>handleChange(event)}
                     label="Search skills"                    
                 />
             </form>

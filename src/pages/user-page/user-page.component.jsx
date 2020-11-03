@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { selectUserlistById, selectUserList } from "../../redux/user/user.selectors";
-import { importUserlistStart, changeUserinfoStart } from "../../redux/user/user.action";
-import UserPageItem from "../../component/user-page-item/user-page-item.component";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { selectUserId, selectUserList } from '../../redux/user/user.selectors'
+import { importUserlistStart } from '../../redux/user/user.action'
+import {ProfileTextContainer} from './user-page.styles'
 
 const UserPage = ({ userList, importUserlistStart, userInfo, changeUserinfoStart }) => {
   useEffect(() => {
@@ -47,49 +47,19 @@ const UserPage = ({ userList, importUserlistStart, userInfo, changeUserinfoStart
   } else {
     const { userName, skills, interests } = userInfo;
 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <UserPageItem
-            name={"userName"}
-            label={"Name"}
-            initialValue={userName}
-            updatedValue={newUserInfo.userName}
-            onChange={handleUpdateUserInfo}
-            handleField={handleField}
-            fieldStatus={fieldStatus}
-          />
-          <UserPageItem
-            name={"skills"}
-            label={"Skills"}
-            initialValue={skills}
-            updatedValue={newUserInfo.skills}
-            onChange={handleUpdateUserInfo}
-            handleField={handleField}
-            fieldStatus={fieldStatus}
-          />
-          <span>{`Interests: `}</span>
+            <ProfileTextContainer>
+                <img src="#" alt="image"/>             
+                <h1>{`Name: ${userName}`}</h1>
+                <h3>{`Skills: ${skills}`}</h3>
+                <h3>{`Interests: `}</h3>
 
-          {interests.map((interest, i) => (
-            <div key={i}>
-              <UserPageItem
-                name={"interests"}
-                label={`#${i + 1}`}
-                id={i}
-                initialValue={interest}
-                updatedValue={newUserInfo.length ? newUserInfo.interests[i] : interests[i]}
-                onChange={handleUpdateUserInfo}
-                handleField={handleField}
-                fieldStatus={fieldStatus}
-              />
-            </div>
-          ))}
-          <button type="submit">Save</button>
-        </form>
-      </div>
-    );
-  }
-};
+                {interests.map((interest, i) =>
+                    <li key={i}>{interest}</li>
+                )}
+            </ProfileTextContainer>
+        )
+    }
+}
 
 const mapStateToProps = (state, ownProps) => ({
   userList: selectUserList(state),

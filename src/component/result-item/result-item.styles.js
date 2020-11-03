@@ -6,6 +6,11 @@ export const ResultItemContainer = styled.div`
     height:100px;
     margin: 10px;
     padding:10px;
+    cursor:pointer;
+    
+        :hover{
+            background-color:#DBE3E5;
+        }
 `
 
 export const ResultItemText = styled.span`

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect } from 'react'
 import ResultItem from '../result-item/result-item.component'
 import { createStructuredSelector } from 'reselect'

@@ -6,3 +6,10 @@ export const selectUserList = createSelector(
     [selectUser],
     (user)=>user.userList
 );
+
+export const selectUserId = idParams => createSelector(
+    [selectUser],
+    ({userList})=> userList.filter(element=> element.id.toString() === idParams)
+    //this returns userInfo array matches with requested userId
+);
+

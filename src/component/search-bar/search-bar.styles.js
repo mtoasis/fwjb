@@ -9,3 +9,5 @@ align-items:center;
     }
     
 `
+
+SearchBarContainer.displayName = 'SearchBarContainer'

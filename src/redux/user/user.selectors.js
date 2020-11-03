@@ -7,7 +7,7 @@ export const selectUserList = createSelector(
     (user)=>user.userList
 );
 
-export const selectUserId = idParams => createSelector(
+export const selectUserlistById = idParams => createSelector(
     [selectUser],
     ({userList})=> userList.filter(element=> element.id.toString() === idParams)
     //this returns userInfo array matches with requested userId

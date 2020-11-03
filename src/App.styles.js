@@ -15,3 +15,9 @@ a {
   color: black
 }
 `
+
+export const ContentContainer = styled.div`
+  overflow:scroll;
+  margin-top:15px;
+  height:90%
+`
